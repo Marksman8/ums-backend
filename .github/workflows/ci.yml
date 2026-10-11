@@ -28,10 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: "21"
@@ -73,8 +73,8 @@ jobs:
       UMS_BACKUP_DB_PASSWORD: ${{ secrets.UMS_CI_BACKUP_DB_PASSWORD }}
       NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: "21"
@@ -93,7 +93,7 @@ jobs:
         run: mvn -B verify
       - name: Upload test, coverage, SpotBugs and licence reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: reports-pr-${{ github.run_number }}
           if-no-files-found: ignore
@@ -140,8 +140,8 @@ jobs:
       UMS_BACKUP_DB_PASSWORD: ${{ secrets.UMS_CI_BACKUP_DB_PASSWORD }}
       NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: "21"
@@ -173,7 +173,7 @@ jobs:
           -DmutationThreshold=0 -DtimestampedReports=false
       - name: Upload nightly reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: reports-nightly-${{ github.run_number }}
           if-no-files-found: ignore
